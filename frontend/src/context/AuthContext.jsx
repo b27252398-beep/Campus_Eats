@@ -21,6 +21,12 @@ export const AuthProvider = ({ children }) => {
         return userData;
     };
 
+    const googleLogin = async (googleData) => {
+        const userData = await authService.googleLogin(googleData);
+        setUser(userData);
+        return userData;
+    };
+
     const signup = async (userData) => {
         return await authService.signup(userData);
     };
@@ -34,6 +40,7 @@ export const AuthProvider = ({ children }) => {
         user,
         setUser,
         login,
+        googleLogin,
         signup,
         logout,
         loading,

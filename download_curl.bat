@@ -1,0 +1,10 @@
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/4/4e/Vada_Pav-Indian_street_food.JPG" -o frontend/public/vadapav.jpg -k
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/c/c8/Samosa_chaat.jpg" -o frontend/public/samosa.jpg -k
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/9/91/Paneer_Tikka.jpg" -o frontend/public/paneertikka.jpg -k
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/9/9f/Dosa_and_ghee.jpg" -o frontend/public/dosa.jpg -k
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/e/ea/Chole_Bhature.jpg" -o frontend/public/cholebhature.jpg -k
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/5/5c/Hyderabadi_Chicken_Biryani.jpg" -o frontend/public/biryani.jpg -k
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/c/c2/Gulab_jamun_%28Indian_sweet%29.jpg" -o frontend/public/gulabjamun.jpg -k
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/1/15/Mango_Lassi.jpg" -o frontend/public/mangolassi.jpg -k
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/e/e0/Masala_Chai.JPG" -o frontend/public/masalachai.jpg -k
+curl.exe -H "User-Agent: curl/7.84.0" -s "https://upload.wikimedia.org/wikipedia/commons/0/07/Jalebi_-_a_sweet_from_India.jpg" -o frontend/public/jalebi.jpg -k

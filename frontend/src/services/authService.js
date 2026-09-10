@@ -25,6 +25,23 @@ const login = async (credentials) => {
     return response.data;
 };
 
+const googleLogin = async (googleData) => {
+    const response = await axios.post(API_URL + 'google', googleData);
+    if (response.data.token) {
+        localStorage.setItem('user', JSON.stringify(response.data));
+
+        // Setup push notifications after login (non-blocking)
+        notificationService.setupNotifications().then((success) => {
+            if (success) {
+                console.log('Push notifications enabled');
+            }
+        }).catch((error) => {
+            console.warn('Push notification setup failed:', error);
+        });
+    }
+    return response.data;
+};
+
 const logout = () => {
     // Unregister FCM token before logging out (non-blocking)
     notificationService.unregisterToken().catch(() => { });
@@ -52,6 +69,7 @@ const refreshToken = async () => {
 const authService = {
     signup,
     login,
+    googleLogin,
     logout,
     getCurrentUser,
     refreshToken,

@@ -641,23 +641,25 @@ function Menu() {
                                         <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full">
                                             <span className="text-sm font-black text-white">Rs.{item.price}</span>
                                         </div>
-                                        {item.vegetarian && (
-                                            <div className="absolute top-3 left-3 bg-green-500/90 backdrop-blur-sm p-1.5 rounded-lg">
-                                                <div className="border border-white p-0.5 rounded-sm"><div className="w-2 h-2 bg-white rounded-full" /></div>
-                                            </div>
-                                        )}
-                                        {user && (
-                                            <button 
-                                                onClick={(e) => handleToggleFavorite(item, e)}
-                                                className={`absolute top-4 left-4 p-2.5 rounded-full backdrop-blur-lg border transition-all duration-300 z-10 hover:scale-110 group/heart ${favoriteItems.some(f => f.id === item.id) ? 'bg-black/50 border-red-500/30' : 'bg-black/30 border-white/10 hover:bg-black/50'}`}
-                                            >
-                                                {favoriteItems.some(f => f.id === item.id) ? (
-                                                    <svg className="w-4 h-4 text-red-500 fill-current drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-white/50 group-hover/heart:text-white transition-colors" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                                )}
-                                            </button>
-                                        )}
+                                        <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
+                                            {user && (
+                                                <button 
+                                                    onClick={(e) => handleToggleFavorite(item, e)}
+                                                    className={`p-2.5 rounded-full backdrop-blur-lg border transition-all duration-300 hover:scale-110 group/heart ${favoriteItems.some(f => f.id === item.id) ? 'bg-black/50 border-red-500/30' : 'bg-black/30 border-white/10 hover:bg-black/50'}`}
+                                                >
+                                                    {favoriteItems.some(f => f.id === item.id) ? (
+                                                        <svg className="w-4 h-4 text-red-500 fill-current drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-white/50 group-hover/heart:text-white transition-colors" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                                    )}
+                                                </button>
+                                            )}
+                                            {item.vegetarian && (
+                                                <div className="bg-green-500/90 backdrop-blur-sm p-1.5 rounded-lg">
+                                                    <div className="border border-white p-0.5 rounded-sm"><div className="w-2 h-2 bg-white rounded-full" /></div>
+                                                </div>
+                                            )}
+                                        </div>
                                         <div className="absolute bottom-3 left-3">
                                             <span className="px-2.5 py-1 bg-black/50 backdrop-blur-md rounded-lg text-[10px] font-bold text-white/80 uppercase tracking-widest border border-white/10">{item.category}</span>
                                         </div>

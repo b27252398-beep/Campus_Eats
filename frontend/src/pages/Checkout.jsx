@@ -47,8 +47,9 @@ function CheckoutForm({ orderIds, totalAmount, onSuccess }) {
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
             {/* Stripe element renders inside a dark-themed container */}
-            <div className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-4">
-                <PaymentElement />
+            <div className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-4 text-center">
+                <p className="text-gray-400 text-sm mb-2">Hackathon Mode: Mock Payment Gateway</p>
+                <p className="text-orange-400 font-bold text-xs uppercase tracking-widest">No Real Credit Card Needed</p>
             </div>
 
             {errorMessage && (
@@ -61,8 +62,22 @@ function CheckoutForm({ orderIds, totalAmount, onSuccess }) {
             )}
 
             <button
-                type="submit"
-                disabled={!stripe || isProcessing}
+                type="button"
+                onClick={async () => {
+                    setIsProcessing(true);
+                    try {
+                        // For mock payments, we know the intent ID starts with pi_mocked
+                        // but we need the actual intent ID which is available from backend response.
+                        // Wait, PaymentConfirmRequest in backend needs paymentIntentId and orderIds.
+                        // Let's just pass a mock string!
+                        await paymentService.confirmPayment("pi_mocked_" + Date.now(), orderIds);
+                        onSuccess();
+                    } catch (err) {
+                        setErrorMessage("Mock payment failed: " + err.message);
+                        setIsProcessing(false);
+                    }
+                }}
+                disabled={isProcessing}
                 className="w-full h-14 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-2xl font-black text-base shadow-xl shadow-orange-900/40 hover:shadow-[0_0_30px_rgba(234,88,12,0.45)] active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
             >
                 {isProcessing ? (
@@ -75,7 +90,7 @@ function CheckoutForm({ orderIds, totalAmount, onSuccess }) {
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
-                        Pay Rs.{totalAmount.toFixed(2)}
+                        Mock Pay Rs.{totalAmount.toFixed(2)}
                     </>
                 )}
             </button>

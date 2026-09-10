@@ -55,7 +55,7 @@ public class LoyaltyController {
     private String getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        User user = userRepository.findByUsername(username)
+        User user = userRepository.findFirstByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return user.getId();
     }

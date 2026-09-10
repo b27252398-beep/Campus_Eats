@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         @Transactional
         public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 // First try to find as regular user by username
-                var optionalUser = userRepository.findByUsername(username);
+                var optionalUser = userRepository.findFirstByUsername(username);
                 if (optionalUser.isPresent()) {
                         User user = optionalUser.get();
                         Set<GrantedAuthority> authorities = user.getRoles().stream()

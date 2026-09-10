@@ -17,37 +17,28 @@ public class PaymentService {
 
     @PostConstruct
     public void init() {
-        Stripe.apiKey = stripeSecretKey;
+        // Stripe.apiKey = stripeSecretKey; // Disable real Stripe init
     }
 
     public PaymentIntentResponse createPaymentIntent(Double amount, String orderId) throws StripeException {
-        // Convert amount to cents (Stripe uses smallest currency unit)
+        // Mock Stripe for hackathon
         long amountInCents = (long) (amount * 100);
-
-        PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
-                .setAmount(amountInCents)
-                .setCurrency("lkr")
-                .putMetadata("orderId", orderId)
-                .setAutomaticPaymentMethods(
-                        PaymentIntentCreateParams.AutomaticPaymentMethods.builder()
-                                .setEnabled(true)
-                                .build())
-                .build();
-
-        PaymentIntent paymentIntent = PaymentIntent.create(params);
-
+        String fakeClientSecret = "pi_mocked_secret_" + System.currentTimeMillis();
+        String fakeIntentId = "pi_mocked_" + System.currentTimeMillis();
+        
         return new PaymentIntentResponse(
-                paymentIntent.getClientSecret(),
-                paymentIntent.getId(),
-                paymentIntent.getAmount());
+                fakeClientSecret,
+                fakeIntentId,
+                amountInCents);
     }
 
     public PaymentIntent retrievePaymentIntent(String paymentIntentId) throws StripeException {
-        return PaymentIntent.retrieve(paymentIntentId);
+        // Mock not strictly needed, but returning null or throwing if called
+        return null;
     }
 
     public String getPaymentStatus(String paymentIntentId) throws StripeException {
-        PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
-        return paymentIntent.getStatus();
+        // Always return succeeded for mock payments
+        return "succeeded";
     }
 }

@@ -101,7 +101,7 @@ public class UserProfileController {
     private User getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        return userRepository.findByUsername(username)
+        return userRepository.findFirstByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 

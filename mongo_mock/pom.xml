@@ -1,0 +1,22 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mock</groupId>
+    <artifactId>mongo-mock</artifactId>
+    <version>1.0</version>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>de.bwaldvogel</groupId>
+            <artifactId>mongo-java-server</artifactId>
+            <version>1.44.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.7</version>
+        </dependency>
+    </dependencies>
+</project>

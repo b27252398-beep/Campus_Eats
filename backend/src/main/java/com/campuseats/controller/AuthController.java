@@ -40,7 +40,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
 
-        User user = userRepository.findByUsername(loginRequest.getUsername())
+        User user = userRepository.findFirstByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return ResponseEntity.ok(new JwtResponse(
@@ -62,7 +62,7 @@ public class AuthController {
             String expiredToken = authHeader.substring(7);
             String username = tokenProvider.getUsernameFromExpiredToken(expiredToken);
 
-            User user = userRepository.findByUsername(username)
+            User user = userRepository.findFirstByUsername(username)
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
             String newToken = tokenProvider.generateTokenFromUsername(username);
@@ -106,5 +106,50 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully!");
+    }
+
+    @PostMapping("/google")
+    public ResponseEntity<?> authenticateGoogleUser(@RequestBody com.campuseats.dto.GoogleLoginRequest request) {
+        String email = request.getEmail();
+        User user = userRepository.findFirstByEmail(email).orElse(null);
+
+        if (user == null) {
+            // Register new user
+            user = new User();
+            user.setEmail(email);
+            // Use email prefix as username
+            user.setUsername(email.split("@")[0] + "_" + request.getUid().substring(0, 5));
+            
+            // Split display name
+            String[] names = request.getDisplayName() != null ? request.getDisplayName().split(" ") : new String[]{"User"};
+            user.setFirstName(names[0]);
+            user.setLastName(names.length > 1 ? names[1] : "");
+            
+            user.setProfilePhotoUrl(request.getPhotoURL());
+            
+            // Random password since they use Google
+            user.setPassword(passwordEncoder.encode(java.util.UUID.randomUUID().toString()));
+            
+            Set<String> roles = new HashSet<>();
+            roles.add("USER");
+            user.setRoles(roles);
+            
+            user = userRepository.save(user);
+        } else if (user.getProfilePhotoUrl() == null && request.getPhotoURL() != null) {
+            user.setProfilePhotoUrl(request.getPhotoURL());
+            user = userRepository.save(user);
+        }
+
+        // Generate token
+        String jwt = tokenProvider.generateTokenFromUsername(user.getUsername());
+
+        return ResponseEntity.ok(new JwtResponse(
+                jwt,
+                user.getUsername(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getPhoneNumber(),
+                user.getProfilePhotoUrl(),
+                user.getCreatedAt() != null ? user.getCreatedAt().toString() : null));
     }
 }

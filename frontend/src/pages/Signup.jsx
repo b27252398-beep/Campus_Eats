@@ -88,7 +88,7 @@ function Signup() {
             {/* ── Left Branding Panel ── */}
             <div className="hidden lg:flex lg:w-5/12 relative overflow-hidden">
                 <img
-                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
+                    src="/campus-hero.jpg"
                     alt=""
                     className="absolute inset-0 w-full h-full object-cover opacity-55"
                 />

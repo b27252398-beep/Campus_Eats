@@ -6,6 +6,7 @@ import Cart from './components/Cart'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import VerifyEmail from './pages/VerifyEmail'
 import Dashboard from './pages/Dashboard'
 import UserProfile from './pages/UserProfile'
 import CanteenLogin from './pages/CanteenLogin'
@@ -196,6 +197,7 @@ function App() {
                             <Route path="/about" element={<About />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/signup" element={<Signup />} />
+                            <Route path="/verify-email" element={<VerifyEmail />} />
                             <Route path="/dashboard" element={<Navigate to="/profile" replace />} />
                             <Route path="/profile" element={<UserProfile />} />
                             <Route path="/orders" element={<Orders />} />

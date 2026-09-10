@@ -62,101 +62,6 @@ const VALUES = [
     },
 ]
 
-const TEAM = [
-    {
-        name: 'Ravindu Siyambalagoda',
-        role: 'Founder & Lead Developer',
-        bio: 'The mind behind CampusEats. Ravindu built the first version in a single weekend and has been driving the vision ever since.',
-        image: '/src/assets/team/ravindu.jpg',
-        initials: 'RS',
-        accent: 'from-orange-500 to-red-600',
-        border: 'border-orange-500/30',
-        isFounder: true,
-    },
-    {
-        name: 'Malinda Samarasekara',
-        role: 'Full Stack Developer',
-        bio: 'Crafts both the backend APIs and beautiful frontends. Malinda owns the order management and real-time tracking systems.',
-        image: '/src/assets/team/malinda.jpg',
-        initials: 'MS',
-        accent: 'from-blue-500 to-indigo-600',
-        border: 'border-blue-500/25',
-        isFounder: false,
-    },
-    {
-        name: 'Ikshuka Malhengoda',
-        role: 'Frontend Developer',
-        bio: 'Brings the UI to life. Ikshuka is responsible for the polished animations, responsive layouts, and the overall design system.',
-        image: '/src/assets/team/ikshuka.jpg',
-        initials: 'IM',
-        accent: 'from-purple-500 to-violet-600',
-        border: 'border-purple-500/25',
-        isFounder: false,
-    },
-    {
-        name: 'Chama Ekanayake',
-        role: 'Backend Developer',
-        bio: 'The engine behind the platform. Chama handles database architecture, Spring Boot APIs, payment integrations, and system security.',
-        image: '/src/assets/team/chama.jpg',
-        initials: 'CE',
-        accent: 'from-green-500 to-emerald-600',
-        border: 'border-green-500/25',
-        isFounder: false,
-    },
-]
-
-function TeamCard({ member }) {
-    const [imgError, setImgError] = useState(false)
-
-    return (
-        <div className={`group relative bg-[#111] border ${member.border} rounded-3xl overflow-hidden hover:-translate-y-3 hover:shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-all duration-400`}>
-            {/* Top accent */}
-            <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${member.accent}`} />
-
-            {/* Founder badge */}
-            {member.isFounder && (
-                <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 bg-orange-500/20 border border-orange-500/40 px-3 py-1 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-                    <span className="text-orange-300 text-[10px] font-black uppercase tracking-widest">Founder</span>
-                </div>
-            )}
-
-            {/* Photo */}
-            <div className="relative h-64 overflow-hidden">
-                {!imgError ? (
-                    <img
-                        src={member.image}
-                        alt={member.name}
-                        onError={() => setImgError(true)}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    />
-                ) : (
-                    <div className={`w-full h-full bg-gradient-to-br ${member.accent} flex items-center justify-center`}>
-                        <span className="text-6xl font-black text-white/90 select-none">{member.initials}</span>
-                    </div>
-                )}
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-[#111]/20 to-transparent" />
-            </div>
-
-            {/* Info */}
-            <div className="px-7 pb-8 -mt-2 relative">
-                <h3 className="text-xl font-black text-white mb-0.5 group-hover:text-orange-300 transition-colors">{member.name}</h3>
-                <p className={`text-sm font-bold mb-4 bg-gradient-to-r ${member.accent} bg-clip-text text-transparent`}>{member.role}</p>
-                <p className="text-gray-500 text-sm leading-relaxed">{member.bio}</p>
-            </div>
-        </div>
-    )
-}
-
-const TIMELINE = [
-    { year: '2023', title: 'The Idea', detail: 'Two students frustrated with lunch queues sketched CampusEats on a napkin.' },
-    { year: 'Q1 2024', title: 'First Canteen', detail: 'Launched with a single canteen. 200 orders in the first week.' },
-    { year: 'Q3 2024', title: 'Campus Wide', detail: 'Expanded to 15 canteens across the full campus. 5,000 students on board.' },
-    { year: '2025', title: 'Going Regional', detail: '50+ canteens, real-time tracking, and a 4.9★ rating on both app stores.' },
-    { year: 'Now', title: 'The Future', detail: 'AI meal planning, cashless integrations, and new campuses rolling out monthly.' },
-]
-
 /* ─── Component ─────────────────────────────────────────────────────────── */
 function About() {
     return (
@@ -168,7 +73,7 @@ function About() {
                 {/* Background image */}
                 <div className="absolute inset-0">
                     <img
-                        src="https://images.unsplash.com/photo-1541614101331-1a5a3a194e92?q=80&w=2069&auto=format&fit=crop"
+                        src="/campus-hero.jpg"
                         alt=""
                         className="w-full h-full object-cover opacity-20 scale-105"
                         style={{ filter: 'blur(1px)' }}
@@ -293,7 +198,7 @@ function About() {
                             {/* Card 1 — back */}
                             <div className="absolute top-8 right-0 w-4/5 h-80 rounded-3xl overflow-hidden border border-white/[0.07] shadow-2xl rotate-3 opacity-60">
                                 <img
-                                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
+                                    src="/pizza.jpg"
                                     alt=""
                                     className="w-full h-full object-cover"
                                 />
@@ -302,7 +207,7 @@ function About() {
                             {/* Card 2 — front */}
                             <div className="absolute bottom-0 left-0 w-4/5 h-80 rounded-3xl overflow-hidden border border-white/[0.1] shadow-2xl -rotate-2 hover:rotate-0 transition-transform duration-500 z-10">
                                 <img
-                                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop"
+                                    src="/burger.jpg"
                                     alt="Students ordering food"
                                     className="w-full h-full object-cover"
                                 />
@@ -322,50 +227,7 @@ function About() {
                 </div>
             </section>
 
-            {/* ════════════════════════════════════════ TIMELINE ══ */}
-            <section className="py-24 bg-[#0a0a0a]">
-                <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
-                        <span className="inline-flex items-center gap-2 bg-orange-500/15 border border-orange-500/25 text-orange-400 text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-                            📅 Our Journey
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-black tracking-tighter">
-                            From Napkin Sketch to <br />
-                            <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">Campus Institution</span>
-                        </h2>
-                    </div>
 
-                    {/* Timeline */}
-                    <div className="relative">
-                        {/* Vertical line */}
-                        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-orange-500/40 via-orange-500/20 to-transparent -translate-x-1/2 hidden md:block" />
-
-                        <div className="space-y-10">
-                            {TIMELINE.map((item, i) => (
-                                <div key={item.year} className={`relative flex flex-col md:flex-row items-center gap-8 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                                    {/* Text card */}
-                                    <div className="w-full md:w-5/12">
-                                        <div className="bg-[#111] border border-white/[0.07] rounded-2xl p-6 hover:border-orange-500/25 hover:-translate-y-1 transition-all duration-300">
-                                            <span className="text-xs font-black text-orange-400 uppercase tracking-widest">{item.year}</span>
-                                            <h3 className="text-xl font-black text-white mt-1 mb-2">{item.title}</h3>
-                                            <p className="text-gray-500 text-sm leading-relaxed">{item.detail}</p>
-                                        </div>
-                                    </div>
-
-                                    {/* Centre dot */}
-                                    <div className="hidden md:flex w-2/12 justify-center">
-                                        <div className="w-5 h-5 rounded-full bg-orange-500 border-4 border-[#080808] shadow-[0_0_15px_rgba(249,115,22,0.6)] z-10" />
-                                    </div>
-
-                                    {/* Spacer */}
-                                    <div className="hidden md:block w-5/12" />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* ════════════════════════════════════════ VALUES ══ */}
             <section className="py-24">
@@ -380,52 +242,38 @@ function About() {
                         </h2>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                         {VALUES.map((v, i) => (
                             <div
                                 key={v.title}
-                                className={`group relative ${v.bg} bg-[#111] border ${v.border} rounded-2xl p-7 overflow-hidden hover:-translate-y-2 hover:shadow-[0_24px_48px_rgba(0,0,0,0.5)] transition-all duration-300`}
+                                className="group relative bg-[#0a0a0a] border border-white/[0.05] rounded-3xl p-10 hover:bg-[#111] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-all duration-300 overflow-hidden"
                             >
-                                {/* Top accent */}
-                                <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${v.accent}`} />
+                                {/* Top colored accent line */}
+                                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${v.accent} opacity-50 group-hover:opacity-100 transition-opacity duration-300`} />
+                                
+                                {/* Inner glow center line */}
+                                <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
-                                {/* Number */}
-                                <span className="absolute top-6 right-6 text-5xl font-black text-white/[0.04] select-none">
+                                {/* Giant Number Background */}
+                                <span className="absolute top-6 right-8 text-[5rem] font-black leading-none text-white/[0.03] select-none group-hover:text-white/[0.08] group-hover:-translate-y-2 group-hover:scale-110 transition-all duration-500">
                                     {String(i + 1).padStart(2, '0')}
                                 </span>
 
-                                <div className="text-3xl mb-5 group-hover:scale-110 transition-transform duration-300">{v.icon}</div>
-                                <h3 className="text-base font-black text-white mb-3 leading-snug">{v.title}</h3>
-                                <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
+                                <div className="text-4xl mb-8 relative z-10 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 inline-block drop-shadow-2xl">
+                                    {v.icon}
+                                </div>
+                                <h3 className="text-2xl font-black text-white mb-4 relative z-10 group-hover:text-white transition-colors duration-300">
+                                    {v.title}
+                                </h3>
+                                <p className="text-gray-400 leading-relaxed relative z-10 group-hover:text-gray-300 transition-colors duration-300">
+                                    {v.desc}
+                                </p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ════════════════════════════════════════ TEAM ══ */}
-            <section className="py-24 bg-[#0a0a0a]">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
-                        <span className="inline-flex items-center gap-2 bg-orange-500/15 border border-orange-500/25 text-orange-400 text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-                            👨‍💻 The Builders
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-black tracking-tighter">
-                            Meet the Team Behind <br />
-                            <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">CampusEats</span>
-                        </h2>
-                        <p className="text-gray-500 max-w-xl mx-auto mt-4 text-base">
-                            Four passionate developers who turned a campus problem into a platform loved by thousands.
-                        </p>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {TEAM.map((member) => (
-                            <TeamCard key={member.name} member={member} />
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* ════════════════════════════════════════ CTA ══ */}
             <section className="py-16 px-4 sm:px-6 lg:px-8">
@@ -446,24 +294,24 @@ function About() {
                         <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center p-10 md:p-16">
                             <div>
                                 <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-tight mb-4">
-                                    Ready to Build <br />the Future With Us?
+                                    Ready to Experience <br />Better Dining?
                                 </h2>
                                 <p className="text-orange-100 text-lg font-light leading-relaxed">
-                                    We're always looking for passionate developers, designers, and campus food lovers to join the team.
+                                    Skip the lines and enjoy your favorite campus meals exactly when you want them.
                                 </p>
                             </div>
                             <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-4 md:justify-end">
                                 <Link
-                                    to="/contact"
+                                    to="/menu"
                                     className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-black shadow-xl hover:bg-gray-50 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 text-center"
                                 >
-                                    Join the Team →
+                                    Order Now →
                                 </Link>
                                 <Link
-                                    to="/menu"
+                                    to="/contact"
                                     className="px-8 py-4 bg-white/15 border border-white/25 text-white rounded-2xl font-bold hover:bg-white/25 transition-all duration-300 text-center"
                                 >
-                                    Try the App
+                                    Get in Touch
                                 </Link>
                             </div>
                         </div>

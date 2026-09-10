@@ -160,45 +160,63 @@ function Home() {
                         </h2>
                     </div>
 
-                    {/* Steps — numbered large, bold, dark-card style */}
-                    <div className="grid md:grid-cols-3 gap-px bg-white/[0.04] rounded-3xl overflow-hidden">
+                    {/* Steps — numbered large, bold, separate floating cards */}
+                    <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
                         {[
                             {
                                 num: '01',
                                 title: 'Browse & Pick',
                                 desc: 'Explore menus across every campus canteen in one place. Filter by cuisine, canteen, or price.',
-                                icon: '🔍',
+                                icon: (
+                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 flex items-center justify-center group-hover:scale-110 group-hover:border-blue-500/40 group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all duration-300 shadow-lg shadow-blue-900/10">
+                                        <svg className="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                    </div>
+                                ),
                             },
                             {
                                 num: '02',
                                 title: 'Order & Pay',
-                                desc: 'Place your order instantly — choose to eat now or schedule for later. Pay securely via Stripe.',
-                                icon: '💳',
+                                desc: 'Place your order instantly - choose to eat now or schedule for later. Pay securely via Stripe.',
+                                icon: (
+                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/10 to-red-500/10 border border-orange-500/20 flex items-center justify-center group-hover:scale-110 group-hover:border-orange-500/40 group-hover:from-orange-500/20 group-hover:to-red-500/20 transition-all duration-300 shadow-lg shadow-orange-900/10">
+                                        <svg className="w-7 h-7 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                        </svg>
+                                    </div>
+                                ),
                             },
                             {
                                 num: '03',
                                 title: 'Show QR & Collect',
                                 desc: 'Watch your order status live. When it\'s ready, flash your QR code and walk away with your food.',
-                                icon: '📲',
+                                icon: (
+                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 flex items-center justify-center group-hover:scale-110 group-hover:border-green-500/40 group-hover:from-green-500/20 group-hover:to-emerald-500/20 transition-all duration-300 shadow-lg shadow-green-900/10">
+                                        <svg className="w-7 h-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                                        </svg>
+                                    </div>
+                                ),
                             },
                         ].map((step, i) => (
                             <div
                                 key={i}
-                                className="group relative bg-[#0c0c0c] p-10 hover:bg-[#111] transition-colors duration-300"
+                                className="group relative bg-[#0a0a0a] border border-white/[0.05] rounded-3xl p-10 hover:bg-[#111] hover:border-orange-500/20 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(234,88,12,0.1)] transition-all duration-300 overflow-hidden"
                             >
+                                {/* Subtle top glow on hover */}
+                                <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-orange-500/0 to-transparent group-hover:via-orange-500/50 transition-all duration-500 opacity-0 group-hover:opacity-100" />
+                                
                                 {/* Step number — giant, faded */}
-                                <span className="absolute top-6 right-8 text-[5rem] font-black leading-none text-white/[0.04] select-none group-hover:text-orange-500/10 transition-colors duration-500">
+                                <span className="absolute top-6 right-8 text-[5rem] font-black leading-none text-white/[0.03] select-none group-hover:text-white/[0.08] group-hover:-translate-y-2 group-hover:scale-110 transition-all duration-500">
                                     {step.num}
                                 </span>
 
-                                <div className="text-4xl mb-6">{step.icon}</div>
-                                <h3 className="text-2xl font-black text-white mb-3 group-hover:text-orange-300 transition-colors duration-300">
+                                <div className="mb-8 relative z-10">{step.icon}</div>
+                                <h3 className="text-2xl font-black text-white mb-4 group-hover:text-orange-400 transition-colors duration-300">
                                     {step.title}
                                 </h3>
-                                <p className="text-gray-500 leading-relaxed">{step.desc}</p>
-
-                                {/* Bottom accent line */}
-                                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/0 to-transparent group-hover:via-orange-500/40 transition-all duration-500" />
+                                <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">{step.desc}</p>
                             </div>
                         ))}
                     </div>
