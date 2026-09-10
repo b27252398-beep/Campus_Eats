@@ -20,3 +20,9 @@ frontend/node_modules/
 Thumbs.db
 jdk_new/
 mvn/
+
+*.zip
+*.pdb
+mongo4/
+mongodb/
+
